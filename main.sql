@@ -1,44 +1,67 @@
-PRAGMA foreign_keys = ON; /*Turns foreign key features/constraints off*/
 
-
-/*instructors table creation*/
-/*primary key of relation*/
-/*a foreign key for another relation*/
-/* min enroment  must be 10)*/
-CREATE TABLE Instructors(
-  faculty_id TEXT, 
-  name TEXT, 
-  office TEXT,
-  PRIMARY KEY(faculty_id)
-  );
-
-
-/*create a table of courses*/
-CREATE TABLE Course (
-  code TEXT,
-  semester TEXT,
-  enrolment TEXT,
-  room TEXT, 
-  PRIMARY KEY(code, semester)
+create table Teams(
+  name TEXT,
+  country TEXT,
+  no_players TEXT,
+  club_id INT,
+  owner TEXT,
+  coach TEXT,
+  win_pct INT,
+  primary key (club_id)
 );
 
--- /*Constraints: 
---   - They cannot be null
---   - They must be unique
---   - Primary keys must be unique and not mull
---   - Foreign keys must exist in another table
--- */
+create table Players(
+  name TEXT,
+  position TEXT,
+  club INT,
+  ovr INT,
+  id char,
+  primary key(id),
+  foreign key (club) 
+    references Teams(club_id)
+);
 
--- /*Inserting information*/
--- SELECT "-------------INSERTING";
--- INSERT INTO Instructors(faculty_id, name, office)
--- VALUES
---   (0000001, "Jimmy Hendricks", "AA109"),
---   (0000002, "Diego Maradona", "FC010");
+INSERT INTO Teams (name, country, no_players, club_id, owner, coach, win_pct)
+  values("Chelsea", "England", 30, 001, "Todd Boehly", "Graham Potter", 50),
+  ("Arsenal", "England", 30, 002, "Stroenke Family", "Mikel Arteta", 80),
+  ("Manchester City", "England", 27, 003, "Abu Dabi Emiratis","Pep Guardiola", 75),
+  ("Newcastle", "England",30, 004,"Saudi Arabian Royal Funds","Eddie Howe", 68),
+  ("Manchester United", "England",32, 005,"Glazers Family","Erik Ten Haag", 65),
+  ("Bayern Munchen", "Germany", 26, 006, "Bayern Association","Julian Nagelsmann", 88),
+  ("Bayer Leverkusen", "Germany", 28, 007, "Bayer", "Xabi Alonso", 54),
+  ("Paris Saint Germain", "France", 27, 008, "Qatar Sports Investments", "Christophe Galtier", 78);
 
--- insert into Course(code, semester, enrolment, room)
--- values 
---   ("FUTA01", "Fall", 24, "BH100"),
---   ("JAZ100", "Winter", 50,"PC201");
 
--- SELECT * FROM Instructors;
+Insert into Players(name, position, club, ovr, id)
+  values("Alphonso Davies", "LM", 006, 83, "BM17"),
+  ("Kylian Mbappe", "LW", 8, 93, "PSG07"),
+  ("Erling Haaland", "ST", 3, 91, "MCI09"),
+  ("Thiago Silva", "CB", 1, 90,"CHE06"),
+  ("Ruben Dias", "CB", 3, 90, "MCI03"), 
+  ("William Saliba", "CB", 2, 86, "ARS12"),
+  ("Manuel Neuer", "GK", 6, 92, "BM01"),
+  ("Reece James", "RM", 1, 99, "CHE24"), 
+  ("Rodri", "DM", 3, 87, "MCI16"),
+  ("Kimmich", "CM", 6, 90, "BM06"),
+  ("Jamal Musiala", "RW", 6, 94, "BM42");
+  
+
+select * from Teams;
+select("  ");
+select("-------BREAK----------");
+select("  ");
+select * FROM Players;
+
+select("  ");
+select("-------BREAK----------");
+select("  ");
+
+/* Select operation*/
+select("  ");
+select("Selecting English Clubs");
+select("  ");
+select name from Teams where country == "England";
+
+select("  ");
+select("Natural Join");
+select("  ");
