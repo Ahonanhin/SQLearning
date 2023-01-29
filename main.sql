@@ -65,3 +65,34 @@ select name from Teams where country == "England";
 select("  ");
 select("Natural Join");
 select("  ");
+
+/*rename*/
+alter table Teams
+  rename column owner to sport_director;
+select sport_director from Teams;
+
+SELECT '---';
+
+/*union*/
+SELECT name from Players
+  WHERE ovr > 95
+UNION
+  SELECT name from Players
+WHERE ovr < 90;
+  SELECT '---';
+
+--intersection
+SELECT name from Players
+  WHERE position == "CB"
+  INTERSECT
+SELECT name from Players
+  WHERE ovr >= 90;
+SELECT '---';
+
+---difference
+SELECT '---';
+SELECT name, position, ovr from Players
+  EXCEPT
+SELECT name, position, ovr from Players
+  WHERE club = '003';
+SELECT '---';
